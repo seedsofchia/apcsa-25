@@ -116,4 +116,9 @@ public static void moveForward(Robot rob,int times){
     rob.move();
   }
 }
+public static void putBeeper(Robot rob, int times){
+  for (int i = 0; i < times; i++){
+    rob.putBeeper();
+  }
+}
 }
