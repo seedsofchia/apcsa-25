@@ -52,7 +52,8 @@ class Math {
     //Addition, subtraction, multiplication, division
 
     //Try doing some math operations with numbers. How can we check to see if the math worked?
-    
+    System.out.println(1+2);
+    //Yes it worked because it worked when i printed it
   
 
     //Create codes that will print the following:
