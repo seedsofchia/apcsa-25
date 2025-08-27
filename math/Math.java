@@ -36,6 +36,11 @@ class Math {
 
     //Create 3 variables of each of the above types (USE GOOD CODING PRACTICE WHEN CREATING THE VARIABLES
 
+    //int world = 1;
+    //double what = 2.3;
+    //boolean isWorld = true;
+
+
 
 
 
@@ -44,8 +49,10 @@ class Math {
 
     //What are the math operators that we can use?
     //+ - * / %
+    //Addition, subtraction, multiplication, division
 
     //Try doing some math operations with numbers. How can we check to see if the math worked?
+    
 
     //Create codes that will print the following:
 
