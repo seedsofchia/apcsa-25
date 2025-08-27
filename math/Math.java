@@ -28,9 +28,9 @@ class Math {
     //For AP we need to know: int, double, boolean
 
     //List examples of the types below and give definition
-    //int (integer):
-    //double:
-    //boolean:
+    //int (integer): variable for whole numbers
+    //double: variable for decimals
+    //boolean: true or false statements
 
     //For now we are just going to work with primitive
 
