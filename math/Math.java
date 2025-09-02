@@ -59,12 +59,17 @@ class Math {
     //Create codes that will print the following:
 
     //Odd integers from 1 to 100, inclusive of both
+    for (int i = 0; i <= 100; i += 2){
+      System.out.println(i);
+    }
 
 
 
     //All multiples of 3 from 1 to 100
-    for (int i = 1; i <= 100; i += 2)
-    System.out.println(i);
+    for (int i = 3; i <= 100; i += 3){
+      System.out.println(i);
+    }
+    
 
 
 
