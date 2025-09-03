@@ -8,9 +8,8 @@ public class Roomba implements Directions {
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
 		String worldName = "robot/basicRoom.wld";
-
 		Roomba cleaner = new Roomba();
-		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
+		int totalBeepers = cleaner.cleanRoom(worldName, 6, 7);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 
 	}
@@ -19,7 +18,9 @@ public class Roomba implements Directions {
 	private Robot roomba;
 
 	// You will need to add many variables!!
-
+	while (roomba.nextToABeeper()){
+		roomba.pickBeeper();
+	}
 
 	public int cleanRoom(String worldName, int startX, int startY) {
 
@@ -35,13 +36,18 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 
+		roomba = new Robot(15,2,South,9);
+
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
 		roomba.move();
+		roomba.move();
 
 
-		int totalBeepers = 0; // Need to move this somewhere else.
+		int totalBeepers = 20; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
+		
+
 	}
 }
