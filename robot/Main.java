@@ -15,4 +15,5 @@ public class Main implements Directions {
         Diamond.main(args);
 
     }
+
 }
