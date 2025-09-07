@@ -26,37 +26,41 @@ public class Roomba implements Directions {
 		World.readWorld(worldName);
 		World.setVisible(true);
 		World.setDelay(25);
+
+		roomba = new Robot(7, 6, East, 9);
 		/**
 		 * This section will have all the logic that takes the Robot to every location
 		 * and cleans up all piles of beepers. Think about ways you can break this
 		 * large, complex task into smaller, easier to solve problems.
+		 * @return 
 		 */
 
-		roomba = new Robot(7, 6, East, 100);
+
 		// You will need to add many variables!!
-		while (roomba.nextToABeeper()) {
-			roomba.pickBeeper();
-		}
+
+		moveForward(roomba, 2);
+		
+
+		{
+
+		
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
-		moveForward(roomba,2);
-				while (roomba.nextToABeeper()) {
-			roomba.pickBeeper();
-		}
-		roomba.move();
-				while (roomba.nextToABeeper()) {
-			roomba.pickBeeper();
-		}
+
+	
+		
+	
 
 
 		
 
-		int totalBeepers = 0; // Need to move this somewhere else.
+		int totalBeepers = 0;  // Need to move this somewhere else.
 		// This method should return the total number of beepers cleaned up.
-		return totalBeepers;
+		return totalBeepers;}
 
 	}
+
 
 	public static void turnRight(Robot roomba) {
 		for (int i = 0; i < 3; i++)
@@ -64,12 +68,18 @@ public class Roomba implements Directions {
 
 	}
 
-	public static void moveForward(Robot roomba, int times) {
-		for (int i = 0; i < times; i++) {
-			roomba.move();
+	public static void moveForward(Robot roomba,int times){
+  		for (int i = 0; i < times; i++){
+    		roomba.move();
 
 		}
 
 	}
 
+	public static void pickupBeeper(Robot roomba, int times) {
+		for (int i = 0; i < times; i++) {
+			roomba.pickBeeper();
+
+		}
+	}
 }
