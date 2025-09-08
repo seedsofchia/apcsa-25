@@ -38,11 +38,32 @@ public class Roomba implements Directions {
 
 		// You will need to add many variables!!
 
-		moveForward(roomba, 2);
 		
-
+		moveForward(roomba, 2);
+		while(roomba.nextToABeeper() == true){
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		moveForward(roomba, 2);
+		roomba.turnLeft();
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		moveForward(roomba, 4);
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
 		{
-
+			
 		
 
 		// the line below causes a null pointer exception
