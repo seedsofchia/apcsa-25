@@ -25,7 +25,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(25);
+		World.setDelay(5);
 
 		roomba = new Robot(7, 6, East, 9);
 		/**
@@ -59,6 +59,29 @@ public class Roomba implements Directions {
 		}
 		roomba.turnLeft();
 		moveForward(roomba, 4);
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		turnRight(roomba);
+		moveForward(roomba, 2);
+		turnRight(roomba);
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		moveForward(roomba, 2);
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		moveForward(roomba, 3);
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.turnLeft();
+		moveForward(roomba, 4);
+		roomba.turnLeft();
+		roomba.move();
 		while(roomba.nextToABeeper()){
 			roomba.pickBeeper();
 		}
