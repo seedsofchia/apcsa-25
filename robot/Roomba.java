@@ -41,32 +41,33 @@ public class Roomba implements Directions {
 
 		int i = 0;
 		while(true){
-			if(roomba.nextToABeeper()){
-				
-			}
-			while(roomba.nextToABeeper()){	
-			roomba.pickBeeper();
-				totalBeepers ++;
-		}
 			while (roomba.frontIsClear()){
-				roomba.move();
-		{
-				roomba.move();
-		}
-				while(roomba.frontIsClear()){
-					roomba.move();
+				while (roomba.nextToABeeper())
+				{
+					roomba.pickBeeper();
 				}
-				while (!roomba.frontIsClear()){
+				roomba.move();
+				if(!roomba.frontIsClear()){
 					roomba.turnLeft();
 				}
-				while(roomba.frontIsClear()){
-					roomba.move();
+		
+				
+					
+					
 				}
-				while(roomba.nextToABeeper()){
-					roomba.pickBeeper();
-					totalBeepers ++;
-				}
+
+		
+		while(true){
+			while(i%2 == 1){
+				roomba.turnLeft();
 			}
+			if(!roomba.frontIsClear()){
+				break;
+			}
+		}
+		
+		
+		
 					
 					
 				
@@ -92,7 +93,7 @@ public class Roomba implements Directions {
 		// This method should return the total number of beepers cleaned up.
 		return totalBeepers;}
 
-		}
+	}
 
 
 	public static void turnRight(Robot roomba) {
