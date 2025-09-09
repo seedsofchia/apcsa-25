@@ -39,32 +39,19 @@ public class Roomba implements Directions {
 		// You will need to add many variables!!
 		int totalBeepers = 0;
 
-		int i = 0;
-		while(true){
+
+	for (int i = 0; i < 5; i++){
+  		for (int a = 0; a < 8; a++) {
 			while (roomba.frontIsClear()){
-				while (roomba.nextToABeeper())
-				{
+				while (roomba.nextToABeeper()){
 					roomba.pickBeeper();
 				}
 				roomba.move();
-				if(!roomba.frontIsClear()){
-					roomba.turnLeft();
-				}
-		
-				
-					
-					
-				}
+}
 
-		
-		while(true){
-			while(i%2 == 1){
-				roomba.turnLeft();
-			}
-			if(!roomba.frontIsClear()){
-				break;
-			}
+      }
 		}
+	
 		
 		
 		
@@ -93,7 +80,7 @@ public class Roomba implements Directions {
 		// This method should return the total number of beepers cleaned up.
 		return totalBeepers;}
 
-	}
+	
 
 
 	public static void turnRight(Robot roomba) {
