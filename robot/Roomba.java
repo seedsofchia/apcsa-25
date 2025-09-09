@@ -39,52 +39,14 @@ public class Roomba implements Directions {
 		// You will need to add many variables!!
 
 		
-		moveForward(roomba, 2);
-		while(roomba.nextToABeeper() == true){
+		while (roomba.frontIsClear()){
+			while (roomba.nextToABeeper())
+		{
 			roomba.pickBeeper();
 		}
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
+			roomba.move();
 		}
-		moveForward(roomba, 2);
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		moveForward(roomba, 4);
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		turnRight(roomba);
-		moveForward(roomba, 2);
-		turnRight(roomba);
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		moveForward(roomba, 2);
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		moveForward(roomba, 3);
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.turnLeft();
-		moveForward(roomba, 4);
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
+
 		{
 			
 		
