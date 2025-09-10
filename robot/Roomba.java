@@ -25,7 +25,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(5);
+		World.setDelay(2);
 
 		roomba = new Robot(7, 6, East, 9);
 		/**
@@ -39,39 +39,73 @@ public class Roomba implements Directions {
 		// You will need to add many variables!!
 		int totalBeepers = 0;
 
-	int b = 0;
-	for (int i = 0; i < 5; i++){
-  		for (int a = 0; a < 8; a++) {
-			while (roomba.frontIsClear()){
-				while (roomba.nextToABeeper()){
-					roomba.pickBeeper();
-				}
-					roomba.move();
-				}
-				if(!roomba.frontIsClear()){
-					roomba.turnLeft();
-				}
-				if(!roomba.frontIsClear()){
-					b++;
-				}
-				
-								
-				else{
+	
+	
+			
+			
 
-					roomba.move();				
-					roomba.turnLeft();
-					roomba.move();
-					roomba.turnLeft();
+			
+		while (roomba.frontIsClear()){
+
+				roomba.move();
+			
+	
+
+				while (roomba.nextToABeeper()){
+					
+					
+					totalBeepers++;
+					roomba.pickBeeper();
+}
+
+				if(!roomba.frontIsClear()){
+					
+					if(roomba.facingEast()){
+
+						roomba.turnLeft();
+						roomba.move();
+						roomba.turnLeft();
 
 					}
 
+					else {
+
+						roomba.turnLeft();
+						roomba.turnLeft();
+						roomba.turnLeft();
+						roomba.move();
+						roomba.turnLeft();
+						roomba.turnLeft();
+						roomba.turnLeft();
+
+						
+				
+				
+					}
+				}
+
+					
+
+				}
+				
+			
+				
+				
+				return totalBeepers;
+				
+				}
+			
+
+				
+
+		
 				
 
 
-				}
+				
 
 			
-				}
+				
 
 
 
@@ -105,29 +139,9 @@ public class Roomba implements Directions {
 
 		 // Need to move this somewhere else.
 		// This method should return the total number of beepers cleaned up.
-		return totalBeepers;}
+		
 
 	
 
 
-	public static void turnRight(Robot roomba) {
-		for (int i = 0; i < 3; i++)
-			roomba.turnLeft();
-
-	}
-
-	public static void moveForward(Robot roomba,int times){
-  		for (int i = 0; i < times; i++){
-    		roomba.move();
-
-		}
-
-	}
-
-	public static void pickupBeeper(Robot roomba, int times) {
-		for (int i = 0; i < times; i++) {
-			roomba.pickBeeper();
-
-		}
-	}
 }
