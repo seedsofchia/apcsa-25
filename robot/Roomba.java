@@ -12,6 +12,8 @@ public class Roomba implements Directions {
 		int totalBeepers = cleaner.cleanRoom(worldName, 6, 7);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 
+
+
 	}
 
 	// declared here so it is visible in all the methods!
@@ -38,6 +40,7 @@ public class Roomba implements Directions {
 
 		// You will need to add many variables!!
 		int totalBeepers = 0;
+		int totalArea = 0;
 
 	
 	
@@ -46,8 +49,9 @@ public class Roomba implements Directions {
 
 			
 		while (roomba.frontIsClear()){
-
-				roomba.move();
+			totalArea++;
+			roomba.move();
+			
 			
 	
 
@@ -64,16 +68,19 @@ public class Roomba implements Directions {
 
 						roomba.turnLeft();
 						roomba.move();
+						totalArea++;
 						roomba.turnLeft();
 
 					}
 
 					else {
+						
 
 						roomba.turnLeft();
 						roomba.turnLeft();
 						roomba.turnLeft();
 						roomba.move();
+						totalArea++;
 						roomba.turnLeft();
 						roomba.turnLeft();
 						roomba.turnLeft();
@@ -83,7 +90,7 @@ public class Roomba implements Directions {
 				
 					}
 				}
-
+				System.out.println("total area is" + totalArea);
 					
 
 				}
@@ -92,7 +99,7 @@ public class Roomba implements Directions {
 				
 				
 				return totalBeepers;
-				
+
 				}
 			
 
