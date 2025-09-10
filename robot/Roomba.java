@@ -11,6 +11,8 @@ public class Roomba implements Directions {
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 6, 7);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
+		int pileSize = cleaner.cleanRoom(worldName, 6, 7); 
+		System.out.println("The largest pile is " +  pileSize);
 
 
 
@@ -41,6 +43,8 @@ public class Roomba implements Directions {
 		// You will need to add many variables!!
 		int totalBeepers = 0;
 		int totalArea = 0;
+
+		
 
 	
 	
