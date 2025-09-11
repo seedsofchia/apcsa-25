@@ -11,9 +11,6 @@ public class Roomba implements Directions {
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 6, 7);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
-		int pileSize = cleaner.cleanRoom(worldName, 6, 7); 
-		System.out.println("The largest pile is " +  pileSize);
-
 
 
 	}
@@ -36,123 +33,69 @@ public class Roomba implements Directions {
 		 * This section will have all the logic that takes the Robot to every location
 		 * and cleans up all piles of beepers. Think about ways you can break this
 		 * large, complex task into smaller, easier to solve problems.
-		 * @return 
+		 * 
+		 * @return
 		 */
-
 
 		// You will need to add many variables!!
 		int totalBeepers = 0;
 		int totalArea = 0;
 
-		
+		int largestPile = 0;
 
-	
-	
-			
-			
-
-			
-		while (roomba.frontIsClear()){
+		while (roomba.frontIsClear()) {
 			totalArea++;
 			roomba.move();
-			
-			
-	
 
-				while (roomba.nextToABeeper()){
-					
-					
-					totalBeepers++;
-					roomba.pickBeeper();
-}
+			int pileSize = 0;
+			while (roomba.nextToABeeper()) {
 
-				if(!roomba.frontIsClear()){
-					
-					if(roomba.facingEast()){
+				totalBeepers++;
+				pileSize++;
+				roomba.pickBeeper();
+			}
+			if (pileSize > largestPile) {
+				largestPile = pileSize;
+			}
 
-						roomba.turnLeft();
-						roomba.move();
-						totalArea++;
-						roomba.turnLeft();
 
-					}
+			if (!roomba.frontIsClear()) {
 
-					else {
-						
+				if (roomba.facingEast()) {
 
-						roomba.turnLeft();
-						roomba.turnLeft();
-						roomba.turnLeft();
-						roomba.move();
-						totalArea++;
-						roomba.turnLeft();
-						roomba.turnLeft();
-						roomba.turnLeft();
-
-						
-				
-				
-					}
-				}
-				System.out.println("total area is" + totalArea);
-					
+					roomba.turnLeft();
+					roomba.move();
+					totalArea++;
+					roomba.turnLeft();
 
 				}
-				
-			
-				
-				
-				return totalBeepers;
+
+				else {
+
+					roomba.turnLeft();
+					roomba.turnLeft();
+					roomba.turnLeft();
+					roomba.move();
+					totalArea++;
+					roomba.turnLeft();
+					roomba.turnLeft();
+					roomba.turnLeft();
 
 				}
-			
+			}
+			System.out.println("total area is" + totalArea);
+			System.out.println("largest pile is" + largestPile);
 
-				
+		}
 
-		
-				
+		return totalBeepers;
 
+	}
 
-				
+	// the line below causes a null pointer exception
+	// what is that and why are we getting it?
 
-			
-				
-
-
-
-
-      
-		
-	
-		
-		
-		
-					
-					
-				
-
-
-
-
-		
-			
-	
-
-		// the line below causes a null pointer exception
-		// what is that and why are we getting it?
-
-	
-		
-	
-
-
-		
-
-		 // Need to move this somewhere else.
-		// This method should return the total number of beepers cleaned up.
-		
-
-	
-
+	// Need to move this somewhere else.
+	// This method should return the total number of beepers cleaned up.
 
 }
