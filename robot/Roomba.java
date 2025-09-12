@@ -7,10 +7,11 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/basicRoom.wld";
+		String worldName = "robot/TestWorld-2.wld";
 		Roomba cleaner = new Roomba();
-		int totalBeepers = cleaner.cleanRoom(worldName, 6, 7);
+		int totalBeepers = cleaner.cleanRoom(worldName, 15, 15);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
+		World.setSize(50,50);
 
 
 	}
