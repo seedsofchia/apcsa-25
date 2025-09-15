@@ -7,11 +7,11 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/TestWorld-2.wld";
+		String worldName = "robot/finalTestWorld2024.wld";
 		Roomba cleaner = new Roomba();
-		int totalBeepers = cleaner.cleanRoom(worldName, 15, 15);
+		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
-		World.setSize(50,50);
+		
 
 
 	}
@@ -27,9 +27,10 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(2);
+		World.setDelay(0);
+		
 
-		roomba = new Robot(7, 6, East, 9);
+		roomba = new Robot(26, 149, West, 0);
 		/**
 		 * This section will have all the logic that takes the Robot to every location
 		 * and cleans up all piles of beepers. Think about ways you can break this
@@ -40,7 +41,7 @@ public class Roomba implements Directions {
 
 		// You will need to add many variables!!
 		int totalBeepers = 0;
-		int totalArea = 0;
+		int totalArea = 1;
 
 		int largestPile = 0;
 
@@ -51,9 +52,10 @@ public class Roomba implements Directions {
 			int pileSize = 0;
 			while (roomba.nextToABeeper()) {
 
-				totalBeepers++;
+				
 				pileSize++;
 				roomba.pickBeeper();
+				totalBeepers++;
 			}
 			if (pileSize > largestPile) {
 				largestPile = pileSize;
