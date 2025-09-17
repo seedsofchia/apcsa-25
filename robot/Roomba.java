@@ -3,6 +3,8 @@ package robot;
 import kareltherobot.*;
 
 public class Roomba implements Directions {
+	private static int st = 0;
+	private static int av = 0;
 
 	// Main method to make this self-contained
 	public static void main(String[] args) {
@@ -18,7 +20,6 @@ public class Roomba implements Directions {
 
 	// declared here so it is visible in all the methods!
 	private Robot roomba;
-
 	public int cleanRoom(String worldName, int startX, int startY) {
 
 		// A new Robot should be constructed and assigned to the global (instance)
@@ -39,26 +40,40 @@ public class Roomba implements Directions {
 		 * @return
 		 */
 
-		// You will need to add many variables!!
-		int totalBeepers = 0;
+		// You will need to add many variables!
 		int totalArea = 1;
-
 		int largestPile = 0;
+		int numberOfPiles = 1;
+		int totalBeepers = 99;
+		
+	
+		//to move stuff and pick up beepers
 
+
+
+		
 		while (roomba.frontIsClear()) {
 			totalArea++;
 			roomba.move();
 
 			int pileSize = 0;
-			while (roomba.nextToABeeper()) {
-
+			
+			if (roomba.nextToABeeper()){
+				pileSize = 0;
+				numberOfPiles++;
+			
+			}
 				
-				pileSize++;
+			while (roomba.nextToABeeper()) {
 				roomba.pickBeeper();
+				pileSize++;
 				totalBeepers++;
+		
 			}
 			if (pileSize > largestPile) {
 				largestPile = pileSize;
+				st = roomba.street();
+				av = roomba.avenue();
 			}
 
 
@@ -70,9 +85,13 @@ public class Roomba implements Directions {
 					roomba.move();
 					totalArea++;
 					roomba.turnLeft();
-
+				
 				}
+			
+				
 
+
+				
 				else {
 
 					roomba.turnLeft();
@@ -83,14 +102,20 @@ public class Roomba implements Directions {
 					roomba.turnLeft();
 					roomba.turnLeft();
 					roomba.turnLeft();
-
+					
 				}
+				
 			}
-			System.out.println("total area is" + totalArea);
-			System.out.println("largest pile is" + largestPile);
+		
 
 		}
-
+			//print metrics
+			System.out.println("total area is " + totalArea);
+			System.out.println("largest pile is " + largestPile);
+			System.out.println("largest pile is at " + st +","+ av);
+			System.out.println("Number of piles " + numberOfPiles);
+			System.out.println("Percent dirty is " + (100*numberOfPiles/totalArea)+"%");
+			System.out.println("Average beeper amount per pile is " + (totalBeepers/numberOfPiles));
 		return totalBeepers;
 
 	}
