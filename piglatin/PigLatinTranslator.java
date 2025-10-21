@@ -21,7 +21,13 @@ public class PigLatinTranslator {
         // The input to this function could be any English string.
         // It may be made up of many words.
         // This method must call translateWord once for each word in the string.
-        result = translateWord(input);
+        String fir = input.substring(0,1);
+        if(fir.equals("a") || fir.equals("e") || fir.equals("i") || fir.equals("o") || fir.equals("u") ||
+           fir.equals("A") || fir.equals("E") || fir.equals("I") || fir.equals("O") || fir.equals("U")) {
+            result = input + "ay";
+        } else {
+            result = input.substring(0,3) + "ay";
+        }
 
         return result;
     }
