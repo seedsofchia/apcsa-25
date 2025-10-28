@@ -1,5 +1,6 @@
 package piglatin;
 import java.util.Scanner;
+
 public class PigLatinTranslator {
     public static Book translate(Book input) {
         Book translatedBook = new Book();
@@ -30,7 +31,7 @@ public class PigLatinTranslator {
         scan.close();
         return result;
     }
-    private static String transaltedWord(String word) {
+    private static String translateWord(String word) {
         if (word.isEmpty()) return " ";
         String result = "";
          // TODO: Replace this code to correctly translate a single word.
@@ -40,7 +41,7 @@ public class PigLatinTranslator {
         String punctuations = ".!,?";
 
         char lastChar = word.charAt(word.length()-1);
-        if (punctuations.indexOf(lastChar)!=-1);
+        if (punctuations.indexOf(lastChar)!=-1)
         word = word.substring(0,word.length()-1);
     }
     if(word.contains("-")){
@@ -55,7 +56,7 @@ public class PigLatinTranslator {
         hyphenScan.close();
         result = translated + punctuations;
         return result;
-    }
+}
     if (word.isEmpty()) return punctuations;
     boolean isCapitalized = Character.isUpperCase(word.charAt(0));
 
@@ -83,7 +84,18 @@ public class PigLatinTranslator {
         // This method must call translateWord once for each word in the string.
        
     }
-    private static boolean s
+    private static boolean startsWithVowel(String word) {
+        return word.matches ("^[aeiouAEIOU].*");
+    }
+    private static int firstVowelIndex(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if ("aeiouAEIOU".indexOf(word.charAt(i)) != -1) {
+                return i;
+            }
+        }
+        return -1; // No vowel found
+    }
 
 
 
