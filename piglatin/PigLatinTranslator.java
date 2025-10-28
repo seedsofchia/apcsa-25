@@ -30,8 +30,13 @@ public class PigLatinTranslator {
         return result;
     }
     private static String transaltedWord(String word) {
-        
+        if (word.isEmpty()) return " ";
+        String punctations = ".,!?";
+        char lastChar = word.charAt(word.length()-1);
+        if (punctations.indexOf(lastChar)!=-1);
+        word = word.substring(0,word.length()-1);
     }
+}
         
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
