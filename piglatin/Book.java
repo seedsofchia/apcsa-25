@@ -2,21 +2,18 @@ package piglatin;
 
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Book {
     private String title;
     private ArrayList<String> text = new ArrayList<String>();
 
-    Book() {
-        // Empty book - no code needed here.
-    }
+    // Default constructor
+    Book() { }
 
-    // Helper to debug code
-    // Prints out a range of lines from a book
+    // Prints a range of lines (used in App.java)
     public void printlines(int start, int length) {
-        System.out.println("Lines " + start + " to " + (start + length) + " of book: " + title);
+        System.out.println("\nLines " + start + " to " + (start + length - 1) + " of book: " + title);
         for (int i = start; i < start + length; i++) {
             if (i < text.size()) {
                 System.out.println(i + ": " + text.get(i));
@@ -26,52 +23,64 @@ public class Book {
         }
     }
 
-    String getTitle() {
-        return title;
-    }
+    // Basic getters and setters
+    String getTitle() { return title; }
+    void setTitle(String title) { this.title = title; }
+    String getLine(int lineNumber) { return text.get(lineNumber); }
+    int getLineCount() { return text.size(); }
+    void appendLine(String line) { text.add(line); }
 
-    void setTitle(String title) {
-        this.title = title;
-    }
-
-    String getLine(int lineNumber) {
-        return text.get(lineNumber);
-    }
-
-    int getLineCount() {
-        return text.size();
-    }
-
-    void appendLine(String line) {
-        text.add(line);
-    }
-
+    // Reads book content from a raw string
     public void readFromString(String title, String string) {
-        // load a book from an input string.
         this.title = title;
-
-        // TODO: use Scanner to populate the book
-        // use: text.add(line) to add a line to the book.
+        text.clear();
+        Scanner scanner = new Scanner(string);
+        while (scanner.hasNextLine()) {
+            text.add(scanner.nextLine());
+        }
+        scanner.close();
+        System.out.println("✅ Loaded " + text.size() + " lines from string \"" + title + "\".");
     }
 
+    // Reads a book from a URL (ex: Gutenberg)
     public void readFromUrl(String title, String url) {
-        // load a book from a URL.
-        // https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
         this.title = title;
+        text.clear();
+        System.out.println("\n🌐 Downloading book from URL: " + url);
 
         try {
-            URL bookUrl = URI.create(url).toURL();
-            // TODO: use Scanner to populate the book
-            // Scanner can open a file on a URL like this:
-            // Scanner(bookUrl.openStream())
-            // use: text.add(line) to add a line to the book.
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            URL bookUrl = new URL(url);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(bookUrl.openStream(), "UTF-8"));
+
+            String line;
+            int count = 0;
+            while ((line = reader.readLine()) != null) {
+                text.add(line);
+                count++;
+                // Print the first 2 lines as a preview
+                if (count <= 2) {
+                    System.out.println("→ line " + count + ": " + line);
+                }
+            }
+            reader.close();
+            System.out.println("✅ Successfully loaded " + text.size() + " lines from \"" + title + "\".");
+        } catch (IOException e) {
+            System.out.println("⚠️ Error loading from URL: " + e.getMessage());
         }
     }
 
-    void writeToFile(String name) {
-        // TODO: Add code here to write the contents of the book to a file.
-        // Must write to file using provided name.
+    // Writes book content to a .txt file
+    void writeToFile(String filename) {
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(filename));
+            for (String line : text) {
+                writer.println(line);
+            }
+            writer.close();
+            System.out.println("💾 Saved book \"" + title + "\" to file: " + filename);
+            System.out.println("📂 Path: " + new File(filename).getAbsolutePath());
+        } catch (IOException e) {
+            System.out.println("⚠️ Error writing file: " + e.getMessage());
+        }
     }
 }
