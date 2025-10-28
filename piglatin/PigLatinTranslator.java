@@ -1,5 +1,5 @@
 package piglatin;
-
+import java.util.Scanner;
 public class PigLatinTranslator {
     public static Book translate(Book input) {
         Book translatedBook = new Book();
@@ -17,6 +17,7 @@ public class PigLatinTranslator {
         if (input == null || input.trim().isEmpty()) {
             return "";
         }
+
        Scanner scan = new Scanner(input);
        String result = "";
          while (scan.hasNext()) {
@@ -31,12 +32,50 @@ public class PigLatinTranslator {
     }
     private static String transaltedWord(String word) {
         if (word.isEmpty()) return " ";
-        String punctations = ".,!?";
+        String result = "";
+         // TODO: Replace this code to correctly translate a single word.
+        // Start here first!
+        // This is the first place to work.
+        String puncuation = "";
+        String punctuations = ".!,?";
+
         char lastChar = word.charAt(word.length()-1);
-        if (punctations.indexOf(lastChar)!=-1);
+        if (punctuations.indexOf(lastChar)!=-1);
         word = word.substring(0,word.length()-1);
     }
-}
+    if(word.contains("-")){
+        Scanner hyphenScan = new Scanner(word);
+        hyphenScan.useDelimiter("-");
+        String translated = "";
+        while (hyphenScan.hasNext()){
+            String part = hyphenScan.next();
+            if(!translated.isEmpty()) translated += "-";
+            translated += translateWord(part);}
+        }
+        hyphenScan.close();
+        result = translated + punctuations;
+        return result;
+    }
+    if (word.isEmpty()) return punctuations;
+    boolean isCapitalized = Character.isUpperCase(word.charAt(0));
+
+    String lowerCase = word.toLowerCase();
+    String translated;
+
+    if (startsWithVowel(lowerCase)){
+        translated = lowerCase + "ay";
+    } else {
+        int vowelIndex = firstVowelIndex(lowerCase);
+        if (vowelIndex == -1){
+            translated = lowerCase + "ay";
+        } else {
+            translated = lowerCase.substring(vowelIndex) + lowerCase.substring(0, vowelIndex) + "ay";
+        }
+    }
+    if (isCapitalized && translated.length() > 0){
+        translated = translated.substring(0,1).toUpperCase() + translated.substring(1);
+    }
+    return translated + punctuations;
         
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
@@ -44,22 +83,7 @@ public class PigLatinTranslator {
         // This method must call translateWord once for each word in the string.
        
     }
+    private static boolean s
 
-    private static String translateWord(String input) {
-        System.out.println("  -> translateWord('" + input + "')");
 
-        String result = "";
 
-        // TODO: Replace this code to correctly translate a single word.
-        // Start here first!
-        // This is the first place to work.
-        result = input; // delete this line
-
-        return result;
-    }
-
-    // Add additonal private methods here.
-    // For example, I had one like this:
-    // private static String capitalizeFirstLetter(String input)
-
-}
