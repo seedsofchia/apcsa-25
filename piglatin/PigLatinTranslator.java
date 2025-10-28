@@ -37,13 +37,13 @@ public class PigLatinTranslator {
          // TODO: Replace this code to correctly translate a single word.
         // Start here first!
         // This is the first place to work.
-        String puncuation = "";
+        String punctuation = "";
         String punctuations = ".!,?";
 
         char lastChar = word.charAt(word.length()-1);
-        if (punctuations.indexOf(lastChar)!=-1)
+        if (punctuations.indexOf(lastChar) !=-1)
         word = word.substring(0,word.length()-1);
-    }
+    
     if(word.contains("-")){
         Scanner hyphenScan = new Scanner(word);
         hyphenScan.useDelimiter("-");
@@ -51,7 +51,7 @@ public class PigLatinTranslator {
         while (hyphenScan.hasNext()){
             String part = hyphenScan.next();
             if(!translated.isEmpty()) translated += "-";
-            translated += translateWord(part);}
+            translated += translateWord(part);
         }
         hyphenScan.close();
         result = translated + punctuations;
@@ -76,7 +76,8 @@ public class PigLatinTranslator {
     if (isCapitalized && translated.length() > 0){
         translated = translated.substring(0,1).toUpperCase() + translated.substring(1);
     }
-    return translated + punctuations;
+    result = translated + punctuation;
+    return result;
         
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
@@ -87,15 +88,16 @@ public class PigLatinTranslator {
     private static boolean startsWithVowel(String word) {
         return word.matches ("^[aeiouAEIOU].*");
     }
-    private static int firstVowelIndex(String word) {
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if ("aeiouAEIOU".indexOf(word.charAt(i)) != -1) {
+    private static int firstVowelIndex(String word){
+        for (int i = 0; i < word.length(); i++){
+            if ("aeiouAEIOU".indexOf(word.charAt(i))!=-1){
                 return i;
             }
         }
-        return -1; // No vowel found
+        return -1;
     }
+}
+    
 
 
 
