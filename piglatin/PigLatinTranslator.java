@@ -80,6 +80,37 @@ public class PigLatinTranslator {
     if(isCapitalized && translated.length() > 0){
         translated = translated.substring(0,1).toUpperCase()+translated.substring(1);
         }
+        for (int i = 1; i < word.length(); i++){
+    char origChar = word.charAt(i);
+    if(Character.isUpperCase(origChar)){
+        // Find where this character from position i ended up
+        char lowerOrigChar = Character.toLowerCase(origChar);
+        
+        // Calculate where character at position i moved to
+        int newPosition;
+        if (vowelIndex == 0) {
+            // Vowel at start: positions stay the same, just add "ay" at end
+            newPosition = i;
+        } else if (vowelIndex > 0) {
+            // Characters before vowelIndex moved to the end (before "ay")
+            if (i < vowelIndex) {
+                newPosition = translated.length() - 2 - (vowelIndex - i);
+            } else {
+                newPosition = i - vowelIndex;
+            }
+        } else {
+            // No vowel: positions stay the same
+            newPosition = i;
+        }
+        
+        if (newPosition >= 0 && newPosition < translated.length()) {
+            translated = translated.substring(0, newPosition) 
+                       + Character.toUpperCase(translated.charAt(newPosition))
+                       + translated.substring(newPosition + 1);
+            }
+        }
+    }
+      
         result = translated + punctuation;
         return result;
 }
@@ -102,6 +133,7 @@ public class PigLatinTranslator {
         return -1;
     }
 }
+
     
 
 
