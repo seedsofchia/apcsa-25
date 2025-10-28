@@ -17,15 +17,21 @@ public class PigLatinTranslator {
         if (input == null || input.trim().isEmpty()) {
             return "";
         }
-        String[] words = input.trim().split("");
-        String result = "";
-         for (int i = 0; i < input.length(); i++){
-            if (i>0){
+       Scanner scan = new Scanner(input);
+       String result = "";
+         while (scan.hasNext()) {
+            String word = scan.next();
+            if(!result.isEmpty()){
                 result += " ";
             }
-            result += translateWord(input.split(" ")[i]);
-         }
+            result += translateWord(word);
+        }
+        scan.close();
         return result;
+    }
+    private static String transaltedWord(String word) {
+        
+    }
         
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
