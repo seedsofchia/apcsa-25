@@ -7,7 +7,8 @@ public class PigLatinTranslator {
         Book translatedBook = new Book();
         translatedBook.setTitle(input.getTitle() + " (Pig Latin)");
 
-        // 🔹 Loop through every line in the book and translate it
+        // Translate each line of the input book
+        // Insert code below
         for (int i = 0; i < input.getLineCount(); i++) {
             String line = input.getLine(i);
             String translatedLine = translate(line);
