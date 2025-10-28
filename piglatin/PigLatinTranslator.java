@@ -47,19 +47,8 @@ public class PigLatinTranslator {
         }
      
     
-    if(word.contains("-")){
-        Scanner hyphenScan = new Scanner(word);
-        hyphenScan.useDelimiter("-");
-        String translated = "";
-        while (hyphenScan.hasNext()){
-            String part = hyphenScan.next();
-            if(!translated.isEmpty()) translated += "-";
-            translated += translateWord(part);
-        }
-        hyphenScan.close();
-        result = translated + punctuation;
-        return result;
-}
+
+
     if (word.isEmpty()) return punctuation;
 
     boolean isCapitalized = Character.isUpperCase(word.charAt(0));
@@ -94,7 +83,7 @@ public class PigLatinTranslator {
         } else if (vowelIndex > 0) {
             // Characters before vowelIndex moved to the end (before "ay")
             if (i < vowelIndex) {
-                newPosition = translated.length() - 2 - (vowelIndex - i);
+                newPosition = translated.length() - 2 - vowelIndex + i;
             } else {
                 newPosition = i - vowelIndex;
             }
