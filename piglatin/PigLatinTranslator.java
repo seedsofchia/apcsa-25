@@ -60,30 +60,28 @@ public class PigLatinTranslator {
         result = translated + punctuation;
         return result;
 }
-    if (word.isEmpty()) return punctuations;
-    
+    if (word.isEmpty()) return punctuation;
 
+    boolean isCapitalized = Character.isUpperCase(word.charAt(0));
     String lowerCase = word.toLowerCase();
     String translated;
-if (startsWithVowel(lowerCase)){
-    translated = lowerCase + "ay";
-} else {
+    
+
     int vowelIndex = firstVowelIndex(lowerCase);
-    if (vowelIndex == -1){
+    if (vowelIndex == 0){
         translated = lowerCase + "ay";
+    } else if (vowelIndex > 0){
+        translated = lowerCase.substring(vowelIndex) + lowerCase.substring(0, vowelIndex) + "ay";
     } else {
-        String start = lowerCase.substring(0, vowelIndex);
-        String end = lowerCase.substring(vowelIndex);
-        translated = end + start + "ay";
+        translated = lowerCase + "ay";
 
     }
-}
-    boolean isCapitalized = Character.isUpperCase(word.charAt(0));  
-    if (isCapitalized && translated.length() > 0){
-        translated = translated.substring(0,1).toUpperCase() + translated.substring(1);
-    }
-    result = translated + punctuation;
-    return result;
+
+    if(isCapitalized && translated.length() > 0){
+        translated = translated.substring(0,1).toUpperCase()+translated.substring(1);
+        }
+        result = translated + punctuation;
+        return result;
 }
         
         // TODO: translate a string input, store in result.
