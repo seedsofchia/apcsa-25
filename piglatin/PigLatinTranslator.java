@@ -16,10 +16,16 @@ public class PigLatinTranslator {
         System.out.println("  -> translate('" + input + "')");
         if (input == null || input.trim().isEmpty()) {
             return "";
-            
         }
-        
-        }
+        String[] words = input.trim().split("");
+        String result = "";
+         for (int i = 0; i < input.length(); i++){
+            if (i>0){
+                result += " ";
+            }
+            result += translateWord(input.split(" ")[i]);
+         }
+        return result;
         
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
