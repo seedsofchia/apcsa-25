@@ -14,22 +14,18 @@ public class PigLatinTranslator {
 
     public static String translate(String input) {
         System.out.println("  -> translate('" + input + "')");
-
-        String result = "";
-
+        if (input == null || input.trim().isEmpty()) {
+            return "";
+            
+        }
+        
+        }
+        
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
         // It may be made up of many words.
         // This method must call translateWord once for each word in the string.
-        String fir = input.substring(0,1);
-        String vowels = "aeiouAEIOU";
-        if(fir.equals(vowels)){
-            result = input + "ay";
-        } else {
-            result = input.substring(0,3) + "ay";
-        }
-
-        return result;
+       
     }
 
     private static String translateWord(String input) {
