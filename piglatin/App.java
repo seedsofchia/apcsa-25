@@ -1,51 +1,59 @@
 package piglatin;
 
 public class App {
-    public static void main(String[] args)
-    {
-        /*  Introduction and TODO List
+    public static void main(String[] args) {
+
+        /* 
+        Project Overview:
 
         This project is setup with four main classes:
-            1. App - the main application
-            2. Book - a class that creates the basic book objects.
-                - a Book contains a representation of a real book.
-                - Book has methods to read data in from various sources
-                - Book also has methods to read data out.
-            3. PigLatinTranslator - a static class
-                - Used to implement your translator.
-                - Has two public methods to take input and return a translated copy.
-                    - Book translate(Book input)
-                    - String translate(String input)
-            4. TestSuite - a simple class that helps you test your work.
-                - Just like CodingBat this class tries your code against various cases.
-                - It will tell you which cases return expected output or not
-         */
+          1. App - the main application
+          2. Book - a class that creates and manages book objects.
+               - A Book represents a real book and stores its lines in memory.
+               - Book has methods to read data in (from a string or URL)
+                 and to write data out (to a file).
+          3. PigLatinTranslator - a static class
+               - Implements your translator logic.
+               - Has two public methods:
+                   - Book translate(Book input)
+                   - String translate(String input)
+          4. TestSuite - runs a series of automated tests on your code.
+               - Helps verify correctness, like CodingBat.
+        */
 
-        // Run tests, comment out once they pass.
+        // Run the test suite (optional)
         int score = TestSuite.run();
 
-        // Focus on TestSuite until you get a score of 5 or higher.
-        if (score > 4)
-        {
-            // Starter book
+        // Only run the book translation once you’ve passed enough tests
+        if (score > 4) {
+
+            // Create a new empty book
             Book input = new Book();
 
-            // Start with a "test" book based on a string.
+            // Step 1: Start with a small test string
             input.readFromString("TestBook", "Dog\nCat\nMouse");
 
-            // ✅ Example reading from a real URL (Romeo and Juliet)
+            // Step 2: Read a full book from a real online source (Romeo and Juliet)
             input.readFromUrl(
                 "Romeo and Juliet",
                 "https://www.gutenberg.org/cache/epub/1513/pg1513.txt"
             );
 
-            // Show first few lines before and after translation
+            // Step 3: Print the first two lines (to verify it loaded correctly)
             input.printlines(0, 2);
+
+            // Step 4: Translate the book into Pig Latin
             Book output = PigLatinTranslator.translate(input);
+
+            // Step 5: Print the first two translated lines as a preview
             output.printlines(0, 2);
 
-            // Save translated text to file
+            // Step 6: Save the translated version to a text file
             output.writeToFile("test.txt");
+
+            System.out.println("\n✅ Translation complete! Check your project folder for 'test.txt'.");
+        } else {
+            System.out.println("\n⚠️ Tests not passed yet. Work on TestSuite until your score is > 4.");
         }
     }
 }
