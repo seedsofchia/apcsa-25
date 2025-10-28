@@ -38,11 +38,14 @@ public class PigLatinTranslator {
         // Start here first!
         // This is the first place to work.
         String punctuation = "";
-        String punctuations = ".!,?";
+        String punctuations = ".!,?;:'\"()[]{}";
 
         char lastChar = word.charAt(word.length()-1);
-        if (punctuations.indexOf(lastChar) !=-1)
-        word = word.substring(0,word.length()-1);
+        if (punctuations.indexOf(lastChar) !=-1){
+            punctuation = String.valueOf(lastChar);
+            word = word.substring(0, word.length()-1);
+        }
+     
     
     if(word.contains("-")){
         Scanner hyphenScan = new Scanner(word);
@@ -54,37 +57,41 @@ public class PigLatinTranslator {
             translated += translateWord(part);
         }
         hyphenScan.close();
-        result = translated + punctuations;
+        result = translated + punctuation;
         return result;
 }
     if (word.isEmpty()) return punctuations;
-    boolean isCapitalized = Character.isUpperCase(word.charAt(0));
+    
 
     String lowerCase = word.toLowerCase();
     String translated;
-
-    if (startsWithVowel(lowerCase)){
+if (startsWithVowel(lowerCase)){
+    translated = lowerCase + "ay";
+} else {
+    int vowelIndex = firstVowelIndex(lowerCase);
+    if (vowelIndex == -1){
         translated = lowerCase + "ay";
     } else {
-        int vowelIndex = firstVowelIndex(lowerCase);
-        if (vowelIndex == -1){
-            translated = lowerCase + "ay";
-        } else {
-            translated = lowerCase.substring(vowelIndex) + lowerCase.substring(0, vowelIndex) + "ay";
-        }
+        String start = lowerCase.substring(0, vowelIndex);
+        String end = lowerCase.substring(vowelIndex);
+        translated = end + start + "ay";
+
     }
+}
+    boolean isCapitalized = Character.isUpperCase(word.charAt(0));  
     if (isCapitalized && translated.length() > 0){
         translated = translated.substring(0,1).toUpperCase() + translated.substring(1);
     }
     result = translated + punctuation;
     return result;
+}
         
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
         // It may be made up of many words.
         // This method must call translateWord once for each word in the string.
        
-    }
+    
     private static boolean startsWithVowel(String word) {
         return word.matches ("^[aeiouAEIOU].*");
     }
