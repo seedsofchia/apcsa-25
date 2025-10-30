@@ -31,12 +31,12 @@ public class App {
             Book input = new Book();
 
             // Step 1: Start with a small test string
-            input.readFromString("TestBook", "Dog\nCat\nMouse");
+
 
             // Step 2: Read a full book from a real online source (Romeo and Juliet)
             input.readFromUrl(
                 "Romeo and Juliet",
-                "https://www.gutenberg.org/cache/epub/1513/pg1513.txt"
+                "https://www.gutenberg.org/cache/epub/2701/pg2701.txt"
             );
 
             // Step 3: Print the first two lines (to verify it loaded correctly)
@@ -51,9 +51,9 @@ public class App {
             // Step 6: Save the translated version to a text file
             output.writeToFile("test.txt");
 
-            System.out.println("\n✅ Translation complete! Check your project folder for 'test.txt'.");
+            System.out.println("\n Translation complete! Check your project folder for 'test.txt'.");
         } else {
-            System.out.println("\n⚠️ Tests not passed yet. Work on TestSuite until your score is > 4.");
+            System.out.println("\n Tests not passed yet. Work on TestSuite until your score is > 4.");
         }
     }
 }

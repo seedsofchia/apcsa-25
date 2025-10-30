@@ -39,14 +39,14 @@ public class Book {
             text.add(scanner.nextLine());
         }
         scanner.close();
-        System.out.println("✅ Loaded " + text.size() + " lines from string \"" + title + "\".");
+        System.out.println("Loaded " + text.size() + " lines from string \"" + title + "\".");
     }
 
     // Reads a book from a URL (ex: Gutenberg)
     public void readFromUrl(String title, String url) {
         this.title = title;
         text.clear();
-        System.out.println("\n🌐 Downloading book from URL: " + url);
+        System.out.println("\n Downloading book from URL: " + url);
 
         try {
             URL bookUrl = new URL(url);
@@ -63,9 +63,9 @@ public class Book {
                 }
             }
             reader.close();
-            System.out.println("✅ Successfully loaded " + text.size() + " lines from \"" + title + "\".");
+            System.out.println("Successfully loaded " + text.size() + " lines from \"" + title + "\".");
         } catch (IOException e) {
-            System.out.println("⚠️ Error loading from URL: " + e.getMessage());
+            System.out.println("Error loading from URL: " + e.getMessage());
         }
     }
 
@@ -77,10 +77,10 @@ public class Book {
                 writer.println(line);
             }
             writer.close();
-            System.out.println("💾 Saved book \"" + title + "\" to file: " + filename);
-            System.out.println("📂 Path: " + new File(filename).getAbsolutePath());
+            System.out.println(" Saved book \"" + title + "\" to file: " + filename);
+            System.out.println(" Path: " + new File(filename).getAbsolutePath());
         } catch (IOException e) {
-            System.out.println("⚠️ Error writing file: " + e.getMessage());
+            System.out.println(" Error writing file: " + e.getMessage());
         }
     }
 }
