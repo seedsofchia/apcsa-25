@@ -52,7 +52,6 @@ public class Game {
 
         System.out.println("Player - Score: " + score(player) + " Hand: " + player.toString());
         System.out.println("Dealer - Score: " + score(dealer) + " Hand: " + dealer.toString());
-
     }
 
     public boolean takeTurn(String action)
@@ -85,13 +84,13 @@ public class Game {
             }
             if (playerScore > 21)
             {
-                System.out.println("BUST! You loose.");
+                System.out.println("BUST! You lose.");
                 dealersWins++;
                 printState();
                 return false;
             }
 
-            // Dealer's Turn
+            // Dealer's Turn - hits while under 17
             if (score(dealer) < 17)
             {
                 Card card = deck.draw();
@@ -123,9 +122,16 @@ public class Game {
                     playersWins++;
                     System.out.println("Player wins!");
                 }
-                else {
+                else if (score(player) < score(dealer))
+                {
                     dealersWins++;
-                    System.out.println("Player wins!");
+                    System.out.println("Dealer wins!");
+                }
+                else
+                {
+                   
+                    System.out.println("Tie! Dealer considered winner by default.");
+                    dealersWins++;
                 }
                 printState();
                 return false;
@@ -137,21 +143,35 @@ public class Game {
         return true;
     }
 
+
     private int score(Hand hand)
     {
-        int score = 0;
-        for (int i=0; i<hand.length(); i++)
+        if (hand == null) return 0;
+        int sum = 0;
+        int aces = 0;
+
+        for (int i = 0; i < hand.length(); i++)
         {
             Card card = hand.get(i);
-            int value = card.getValue() + 1;
-            if (value > 10)
-            {
-                value = 10;
+            if (card == null) continue;
+            int v = card.getValue(); // 0..12
+            if (v == 0) {
+                // Ace: count as 1 for now, track aces
+                sum += 1;
+                aces++;
+            } else {
+                int value = v + 1; // map to 2..13
+                if (value > 10) value = 10; // face cards = 10
+                sum += value;
             }
-            // TODO: deal with aces
-            score += value;
         }
-        return score;
-    }
 
+     
+        while (aces > 0 && sum + 10 <= 21) {
+            sum += 10;
+            aces--;
+        }
+
+        return sum;
+    }
 }
