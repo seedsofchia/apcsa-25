@@ -2,10 +2,15 @@ package sorting;
 
 public class InsertionSort implements Sorter {
 
+
+
     @Override
-    public void sort(int[] arr){
-        insertionSort(arr);
+            public void sort(int[] input) {
+        System.out.println("Insertion Sort!!!");
     }
+
+   
+    
     public void insertionSort(int[] array) {
         for (int i = 0; i < array.length; i++){
             int current = array[i];
