@@ -1,33 +1,32 @@
 package sorting;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args)
     {
-        // Task:
-        // 1. Implement missing sorting algorithms.
-        //    - InsertionSort.java
-        //    - SelectionSort.java
-        //
-        //  2. Add a method to class Main to generate a random array.
-        //  3. Provide random input to test suite and ensure your implementations
-        //     of InsertionSort and Selection sort continue to work.
-        //  4. Increase the loop count for TestSuite to get better performance results.
+        int[] sizes = {100, 200, 400, 800};
 
-        int[] testInput = randomArray(5);
+        for (int size : sizes) {
+            System.out.println("\n----------------");
+            System.out.println("Array size: " + size);
+            System.out.println("------------------------------");
 
-        // Increase the loop count to get better results once it works.
-        // TestSuite.run(testInput, 10000);
-        TestSuite.run(testInput, 1);
+            int[] testInput = randomArray(size);
+
+            
+            TestSuite.run(testInput, 1000);
+        }
     }
 
     public static int[] randomArray(int length)
     {
+        Random rand = new Random();
         int[] a = new int[length];
 
         for (int i = 0; i < length; i++) {
-            a[i] = (int) (Math.random() * 101); // 0–100
+            a[i] = rand.nextInt(10_000); 
         }
-
         return a;
     }
 }

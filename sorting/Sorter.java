@@ -1,6 +1,7 @@
 package sorting;
 
 public interface Sorter {
-    public void sort(int[] input);
-
+    void sort(int[] arr);
+    long getSteps();
+    void resetSteps();
 }
