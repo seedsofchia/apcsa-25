@@ -2,27 +2,20 @@ package sorting;
 
 public class InsertionSort implements Sorter {
 
-
-
     @Override
-            public void sort(int[] input) {
+    public void sort(int[] input) {
         System.out.println("Insertion Sort!!!");
-    }
 
-   
-    
-    public void insertionSort(int[] array) {
-        for (int i = 0; i < array.length; i++){
-            int current = array[i];
-            int j = i-1;
-            
-            while (j >= 0 && array[j] > current){
-                array[j + 1] = array[j];
+        for (int i = 1; i < input.length; i++) {
+            int current = input[i];
+            int j = i - 1;
+
+            while (j >= 0 && input[j] > current) {
+                input[j + 1] = input[j];
                 j--;
             }
-                
-            array[j + 1] = current;
-        }
+
+            input[j + 1] = current;
         }
     }
-
+}
