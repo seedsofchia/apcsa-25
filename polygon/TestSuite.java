@@ -1,26 +1,26 @@
 package polygon;
 
-import java.awt.geom.*; // for Point2D.Double
+import java.awt.geom.*; 
 import java.util.Arrays;
+import gpdraw.*;
 
 public class TestSuite {
-    // Run a bunch of basic tests on IrregularPolygon
-    public static void run()
+    public static void run(DrawingTool pen)
     {
         System.out.println("Starting TestSuite");
         boolean pass = true;
 
         double[][] singlePoint = { { 0, 0 } };
-        pass &= basicTest("Single Point", singlePoint, 0, 0);
+        pass &= basicTest("Single Point", singlePoint, 0, 0, pen, -150, -150);
 
-        double[][] squarePoints = { { 0, 0 }, { 0, 1 }, { 1, 1 }, { 1, 0 } };
-        pass &= basicTest("Unit Square", squarePoints, 4, 1);
+        double[][] squarePoints = { { 0, 0 }, { 0, 100 }, { 100, 100 }, { 100, 0 } };
+        pass &= basicTest("Unit Square", squarePoints, 400, 10000, pen, 50, 50);
 
         double[][] parallelogramPoints = { { 20, 10 }, { 70, 20 }, { 50, 50 }, { 0, 40 } };
-        pass &= basicTest("Parallelogram", parallelogramPoints, 174.0914, 1700);
+        pass &= basicTest("Parallelogram", parallelogramPoints, 174.0914, 1700, pen, 50, -150);
 
         double[][] bowtiePoints = { { 0, 0 }, { 100, 50 }, { 100, 0 }, { 0, 50 } };
-        pass &= basicTest("Bowtie", bowtiePoints, 323.6067, 0.0);
+        pass &= basicTest("Bowtie", bowtiePoints, 323.6067, 0.0, pen, -50, -50);
 
         if (pass == true)
         {
@@ -32,19 +32,20 @@ public class TestSuite {
         }
     }
 
-    public static boolean basicTest(String description, double[][] points, double expectedPerimeter, double expectedArea)
+    public static boolean basicTest(String description, double[][] points, double expectedPerimeter, double expectedArea, DrawingTool pen, double xOff, double yOff)
     {
         IrregularPolygon poly = new IrregularPolygon();
         for (double[] point : points)
         {
-            //System.out.println("  Adding point: " + Arrays.toString(point));
             poly.add(new Point2D.Double(point[0], point[1]));
         }
+
+        poly.draw(pen, xOff, yOff);
 
         double perimeter = poly.perimeter();
         double area = poly.area();
 
-        System.out.println(description + " - Area: " + area + ", Perimeter: " + perimeter);
+        System.out.println(description + " - Perimeter: " + perimeter + ", Area: " + area);
 
         boolean perimeterCorrect = compareDoubles(perimeter, expectedPerimeter);
         boolean areaCorrect = compareDoubles(area, expectedArea);
@@ -57,24 +58,12 @@ public class TestSuite {
         else
         {
             System.out.println("FAIL: " + description);
-            if (!perimeterCorrect) {
-                System.out.println(" Perimeter should be: " + expectedPerimeter + " not: " + perimeter);
-            }
-            if (!areaCorrect) {
-                System.out.println(" Area should be: " + expectedArea + " not: " + area);
-            }
             return false;
         }
     }
 
     private static boolean compareDoubles(Double a, Double b)
     {
-        if (Math.abs(a - b) < 0.001) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Math.abs(a - b) < 0.001;
     }
 }
