@@ -19,10 +19,7 @@ public class IrregularPolygon {
 
     public double perimeter() {
         // TODO: Calculate the perimeter.
-        if (myPolygon.size() < 2) {
-            return 0.0;
-        }
-
+        if (myPolygon.size() < 2) return 0.0;
         double perimeter = 0;
         for (int i = 0; i < myPolygon.size(); i++) {
             Point2D.Double current = myPolygon.get(i);
@@ -34,21 +31,14 @@ public class IrregularPolygon {
 
     public double area() {
         // TODO: Calculate the area.
-        
-        Double area = 0.0;
-        if (myPolygon.size() < 3) {
-            return 0.0;
-        }
-
+        if (myPolygon.size() < 3) return 0.0;
+        double area = 0.0;
         for (int i = 0; i < myPolygon.size(); i++) {
             Point2D.Double current = myPolygon.get(i);
             Point2D.Double next = myPolygon.get((i + 1) % myPolygon.size());
-            area += (current.getX() * next.getY());
-            area -= (next.getX() * current.getY());
+            area += (current.getX() * next.getY()) - (next.getX() * current.getY());
         }
-
-        area = Math.abs(area / 2.0);
-        return area;
+        return Math.abs(area / 2.0);
     }
 
     public void draw()
@@ -64,11 +54,9 @@ public class IrregularPolygon {
                 pen.up();
                 pen.move(myPolygon.get(0).getX(), myPolygon.get(0).getY());
                 pen.down();
-
                 for (int i = 1; i < myPolygon.size(); i++) {
                     pen.move(myPolygon.get(i).getX(), myPolygon.get(i).getY());
                 }
-
                 pen.move(myPolygon.get(0).getX(), myPolygon.get(0).getY());
             }
         } catch (java.awt.HeadlessException e) {

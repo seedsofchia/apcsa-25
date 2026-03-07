@@ -44,6 +44,8 @@ public class TestSuite {
         double perimeter = poly.perimeter();
         double area = poly.area();
 
+        System.out.println(description + " - Area: " + area + ", Perimeter: " + perimeter);
+
         boolean perimeterCorrect = compareDoubles(perimeter, expectedPerimeter);
         boolean areaCorrect = compareDoubles(area, expectedArea);
 

@@ -12,6 +12,8 @@ public class Main {
         myPolygon.add(new Point2D.Double(0, 40));
         myPolygon.draw();
 
+        System.out.println("The area is: " + myPolygon.area());
+
         TestSuite.run();
     }
     
